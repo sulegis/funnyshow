@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<title>see U again?</title>
+<style type="text/css">
+	html {
+		overflow: hidden;
+	}
+	body {
+		margin: 0px;
+		padding: 0px;
+		background: #222;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	#screen {
+		position:absolute;
+		left: 0%;
+		top: 0%;
+		width: 100%;
+		height: 100%;
+		background: #000;
+		overflow: hidden;
+		cursor: url("images/cross_rm.cur"), auto;
+	}
+	#pan {
+		position: absolute;
+		height: 270%;
+		width: 150%;
+		padding: 5%;
+		background: #000000 url("images/bumps2.gif");
+	}
+	#screen .frame {
+		position: relative;
+		float: left;
+		width: 10%;
+		height: 15%;
+		margin: 2%;
+		background: #000;
+		overflow: hidden;
+	}
+	#screen .slider {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #222 url("images/bumps3.gif");
+		z-index: -1000;
+	}
+	#pan img {
+		position: absolute;
+		visibility: visible;
+	}
+	#pan .legend {
+		position: absolute;
+		bottom: 0px;
+		font-size: 1em;
+		color: #FFF;
+		width: 2000px;
+		font-family: arial;
+		font-weight: bold;
+	}
+</style>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $.get("./images/2006/filelist.xml", function(data){
+        $(data).find('file').each(function(index, ele){
+			var imgsrc = $(this).attr("HRef");
+            $("#pan").append('<div class="frame" title="">' +
+				'<img src="images/2006/'+imgsrc + '" alt="">' +
+				'<div class="legend" style=""></div>' +
+				'<div class="slider"></div>');
+        })
+		sP.init();
+    });	
+	onresize = sP.resize;
+});
+</script>
+<script type="text/javascript" src="js/pic.js"></script>
+</head>
+
+<body>
+
+<div id="screen">
+	<div id="pan" style="left: 0px; top: 0px;">
+	</div>
+</div>
+</body></html>
